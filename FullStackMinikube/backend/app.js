@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const db = mysql.createConnection({
     host: 'mysql-service',
     user: 'root',
-    password: 'password',
+    password: process.env.DB_PASSWORD,
     database: 'mydb'
 });
 

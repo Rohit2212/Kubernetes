@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-deployment
+  name: mysql-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: backend
+      app: mysql
   template:
     metadata:
       labels:
-        app: backend
+        app: mysql
     spec:
       containers:
-      - name: backend
-        image: backend-image:1.0
+      - name: mysql
+        image: mysql:5.7
         env:
-        - name: DB_PASSWORD
+        - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
               name: mysql-secret
               key: mysql-root-password
         ports:
-        - containerPort: 8080
+        - containerPort: 3306
